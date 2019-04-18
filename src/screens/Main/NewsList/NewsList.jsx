@@ -7,7 +7,7 @@ import Spinner from '/shared/Spinner';
 
 import NewsItem from './NewsItem';
 
-export default function NewsList({ items, loading }) {
+export default function NewsList({ items, loading, onAddToReadLater }) {
   return (
     <div className="column column-65">
       <h2 className="newsColumnTitle">News List</h2>
@@ -15,7 +15,13 @@ export default function NewsList({ items, loading }) {
         { loading ? <Spinner /> : (
           <List
             data={items}
-            renderItem={item => <NewsItem item={item} key={item.id} />}
+            renderItem={item => (
+              <NewsItem
+                item={item}
+                key={item.id}
+                onAddToReadLater={onAddToReadLater}
+              />
+            )}
             renderEmpty={() => <p>There are no news to display</p>}
           />
         )}
@@ -27,4 +33,5 @@ export default function NewsList({ items, loading }) {
 NewsList.propTypes = {
   items: PropTypes.arrayOf(NewsItemType).isRequired,
   loading: PropTypes.bool.isRequired,
+  onAddToReadLater: PropTypes.func.isRequired,
 };

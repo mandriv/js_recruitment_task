@@ -56,8 +56,17 @@
   align-items: center;
 }
 
+.readLaterList {
+  list-style: none;
+}
+
+.readLaterList > li {
+  animation: fadein 0.5s;
+}
+
 .readLaterItem-title {
-  display: inline-block;
+  display: list-item;
+  list-style: circle inside;
   margin-bottom: 5px;
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NewsItemType from '/types/NewsItemType';
 
-export default function ReadLaterItem({ item }) {
+export default function ReadLaterItem({ item, onRemoveReadLaterItem }) {
   return (
     <li>
       <h4 className="readLaterItem-title">{ item.title }</h4>
@@ -18,6 +19,7 @@ export default function ReadLaterItem({ item }) {
         <button
           className="button button-clear"
           type="button"
+          onClick={() => onRemoveReadLaterItem(item)}
         >
           Remove
         </button>
@@ -28,4 +30,5 @@ export default function ReadLaterItem({ item }) {
 
 ReadLaterItem.propTypes = {
   item: NewsItemType.isRequired,
+  onRemoveReadLaterItem: PropTypes.func.isRequired,
 };

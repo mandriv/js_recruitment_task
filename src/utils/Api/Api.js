@@ -1,5 +1,6 @@
 import { ResponsesCache } from '/utils/Storage';
 
+// would use proxy normally
 const CORS = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = 'https://content.guardianapis.com';
 const { API_KEY } = process.env;

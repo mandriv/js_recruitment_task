@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import NewsItemType from '/types/NewsItemType';
 
-export default function NewsItem({ item }) {
+export default function NewsItem({ item, onAddToReadLater }) {
   return (
     <li>
       <article className="news">
@@ -33,6 +34,7 @@ export default function NewsItem({ item }) {
           <button
             className="button button-outline"
             type="button"
+            onClick={() => onAddToReadLater(item)}
           >
             Read Later
           </button>
@@ -44,4 +46,5 @@ export default function NewsItem({ item }) {
 
 NewsItem.propTypes = {
   item: NewsItemType.isRequired,
+  onAddToReadLater: PropTypes.func.isRequired,
 };
