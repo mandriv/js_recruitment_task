@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { News } from '/utils/Api';
-import transformToNewsItem from '/utils/transformToNewsItem';
+import transformToNewsItem from '/utils/helpers/transformToNewsItem';
+import ISODateToShortDate from '/utils/helpers/ISODateToShortDate';
 
 const INITITAL_CONTROL = {
   searchQuery: '',
@@ -33,10 +34,10 @@ export default function useAdmins() {
           q: searchQuery,
           section: activeSection === 'all' ? '' : activeSection,
           page: activePage,
-          'from-date': fromDate.toISOString(),
+          'from-date': ISODateToShortDate(fromDate.toISOString()),
         };
         // make request
-        const { response } = await News.search(params);
+        const { response } = await News.search(params, true);
         setControl(prevControl => ({
           ...prevControl,
           availablePages: response.pages,
