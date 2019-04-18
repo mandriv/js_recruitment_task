@@ -1,16 +1,12 @@
 import React from 'react';
 
-import logo from '/assets/logo.png';
+import AppHeader from '/shared/AppHeader';
+
 
 export default function Main() {
   return (
     <main className="wrapper">
-      <header className="appHeader">
-        <div className="container appHeader-inner">
-          <img src={logo} alt="company logo" className="companyLogo" />
-          <h1 className="appTitle">Recruitment task</h1>
-        </div>
-      </header>
+      <AppHeader title="Recruitment task" />
       <section className="container filtersContainer">
         <div className="row">
           <div className="column searchColumn">
