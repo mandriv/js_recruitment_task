@@ -1,41 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function NewsList() {
+import List from '/utils/List';
+import NewsItemType from '/types/NewsItemType';
+
+import NewsItem from './NewsItem';
+
+export default function NewsList({ news }) {
   return (
     <div className="column column-65">
       <h2 className="newsColumnTitle">News List</h2>
       <ul className="newsList">
-        <li>
-          <article className="news">
-            <header>
-              <h3>Sample news title</h3>
-            </header>
-            <section className="newsDetails">
-              <ul>
-                <li>
-                  <strong>Section Name:</strong>
-                  {' '}
-                  Sample Section
-                </li>
-                <li>
-                  <strong>Publication Date:</strong>
-                  {' '}
-                  06.12.2018
-                </li>
-              </ul>
-            </section>
-            <section className="newsActions">
-              <a href="https://theguardian.com" className="button">Full article</a>
-              <button
-                className="button button-outline"
-                type="button"
-              >
-                Read Later
-              </button>
-            </section>
-          </article>
-        </li>
+        <List
+          data={news}
+          renderItem={item => <NewsItem item={item} key={item.id} />}
+        />
       </ul>
     </div>
   );
 }
+
+NewsList.propTypes = {
+  news: PropTypes.arrayOf(NewsItemType).isRequired,
+};
