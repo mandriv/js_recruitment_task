@@ -4,6 +4,7 @@ import AppHeader from '/shared/AppHeader';
 
 import ContentControl from './ContentControl';
 import NewsList from './NewsList';
+import ReadLaterList from './ReadLaterList';
 
 const TEST_NEWS_DATA = [
   {
@@ -33,24 +34,8 @@ export default function Main() {
       />
       <section className="container newsContainer">
         <div className="row">
-          <div className="column column-55">
-            <h2 className="newsColumnTitle">Read Later</h2>
-            <ul className="readLaterList">
-              <li>
-                <h4 className="readLaterItem-title">Saved news title</h4>
-                <section>
-                  <a href="https://theguardian.com" className="button button-clear">Read</a>
-                  <button
-                    className="button button-clear"
-                    type="button"
-                  >
-                    Remove
-                  </button>
-                </section>
-              </li>
-            </ul>
-          </div>
           <NewsList items={TEST_NEWS_DATA} />
+          <ReadLaterList items={TEST_NEWS_DATA} />
         </div>
       </section>
     </main>
