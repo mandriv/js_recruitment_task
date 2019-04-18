@@ -17,7 +17,6 @@ export default function Main() {
         <div className="row">
           <div className="column column-65">
             <h2 className="newsColumnTitle">News List</h2>
-
             <ul className="newsList">
               <li>
                 <article className="news">
@@ -40,7 +39,12 @@ export default function Main() {
                   </section>
                   <section className="newsActions">
                     <a href="https://theguardian.com" className="button">Full article</a>
-                    <button className="button button-outline">Read Later</button>
+                    <button
+                      className="button button-outline"
+                      type="button"
+                    >
+                      Read Later
+                    </button>
                   </section>
                 </article>
               </li>
@@ -53,7 +57,12 @@ export default function Main() {
                 <h4 className="readLaterItem-title">Saved news title</h4>
                 <section>
                   <a href="https://theguardian.com" className="button button-clear">Read</a>
-                  <button className="button button-clear">Remove</button>
+                  <button
+                    className="button button-clear"
+                    type="button"
+                  >
+                    Remove
+                  </button>
                 </section>
               </li>
             </ul>
