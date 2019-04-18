@@ -1,3 +1,5 @@
+import { ResponsesCache } from '/utils/Storage';
+
 const CORS = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = 'https://content.guardianapis.com';
 const { API_KEY } = process.env;
@@ -8,7 +10,7 @@ const defaultParams = {
 const defaultConfig = {};
 
 // acts as a axios-like wrapper around fetch
-const request = async (endpoint = '', params = defaultParams, config = defaultConfig) => {
+const request = async (endpoint = '', params = defaultParams, config = defaultConfig, useCache = false) => {
   // construct url-encoded params string
   const paramsString = Object.entries({ ...defaultParams, ...params }).reduce((str, entry) => {
     const key = entry[0];
@@ -20,6 +22,11 @@ const request = async (endpoint = '', params = defaultParams, config = defaultCo
 
   const url = `${CORS}${BASE_URL}${endpoint}${paramsString}`;
   const mergedConfig = { ...defaultConfig, ...config };
+  // Caching - retrieve
+  if (useCache) {
+    const response = ResponsesCache.get(url, mergedConfig);
+    if (response !== null) return response;
+  }
   const fetchResponse = await fetch(url, mergedConfig);
   // detect error
   if (!fetchResponse.ok) {
@@ -36,14 +43,52 @@ const request = async (endpoint = '', params = defaultParams, config = defaultCo
   }
   // response ok, transform response body
   if (fetchResponse.headers.get('Content-Type') === 'application/json') {
-    return fetchResponse.json();
+    const response = await fetchResponse.json();
+    // Caching save
+    if (useCache) {
+      ResponsesCache.put(url, { config: mergedConfig, response });
+    }
+    return response;
   }
   return fetchResponse.text();
 };
 
 const Api = {
-  get: (endpoint, params) => request(endpoint, params),
-  // TODO: POST, PUT, PATCH (or just use axios)
+  get: (endpoint, params, config, useCache) => {
+    const getConfig = {
+      ...config,
+      method: 'GET',
+    };
+    return request(endpoint, params, getConfig, useCache);
+  },
+  post: (endpoint, params, config, useCache) => {
+    const postConfig = {
+      ...config,
+      method: 'POST',
+    };
+    return request(endpoint, params, postConfig, useCache);
+  },
+  put: (endpoint, params, config, useCache) => {
+    const putConfig = {
+      ...config,
+      method: 'put',
+    };
+    return request(endpoint, params, putConfig, useCache);
+  },
+  patch: (endpoint, params, config, useCache) => {
+    const patchConfig = {
+      ...config,
+      method: 'PATCH',
+    };
+    return request(endpoint, params, patchConfig, useCache);
+  },
+  delete: (endpoint, params, config, useCache) => {
+    const deleteConfig = {
+      ...config,
+      method: 'DELETE',
+    };
+    return request(endpoint, params, deleteConfig, useCache);
+  },
 };
 
 export default Api;

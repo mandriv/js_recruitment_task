@@ -1,7 +1,7 @@
 import Api from './Api';
 
 const News = {
-  search: (params = {}) => Api.get('/search', params),
+  search: (params = {}, useCache = false) => Api.get('/search', params, null, useCache),
 };
 
 export default News;
