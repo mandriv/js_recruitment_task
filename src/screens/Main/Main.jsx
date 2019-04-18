@@ -25,15 +25,14 @@ const TEST_NEWS_DATA = [
 ];
 
 export default function Main() {
-  const { control, news } = useNews();
+  const { control, handleControlUpdate, news } = useNews();
 
   return (
     <main className="wrapper">
       <AppHeader title="Recruitment task" />
       <ContentControl
-        searchQuery={control.searchQuery}
-        activeSection={control.activeSection}
-        activePage={control.activePage}
+        control={control}
+        onUpdate={handleControlUpdate}
       />
       <section className="container newsContainer">
         <div className="row">
