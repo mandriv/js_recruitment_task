@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import NewsSectionType from '/types/NewsSectionType';
+
 export default function ContentControl({ searchQuery, activeSection, activePage }) {
   return (
     <section className="container filtersContainer">
@@ -42,8 +44,6 @@ export default function ContentControl({ searchQuery, activeSection, activePage 
 
 ContentControl.propTypes = {
   searchQuery: PropTypes.string.isRequired,
-  activeSection: PropTypes.oneOf([
-    'all', 'books', 'business', 'culture', 'sport',
-  ]).isRequired,
+  activeSection: NewsSectionType.isRequired,
   activePage: PropTypes.number.isRequired,
 };
