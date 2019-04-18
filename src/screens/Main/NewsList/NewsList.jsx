@@ -6,13 +6,13 @@ import NewsItemType from '/types/NewsItemType';
 
 import NewsItem from './NewsItem';
 
-export default function NewsList({ news }) {
+export default function NewsList({ items }) {
   return (
     <div className="column column-65">
       <h2 className="newsColumnTitle">News List</h2>
       <ul className="newsList">
         <List
-          data={news}
+          data={items}
           renderItem={item => <NewsItem item={item} key={item.id} />}
         />
       </ul>
@@ -21,5 +21,5 @@ export default function NewsList({ news }) {
 }
 
 NewsList.propTypes = {
-  news: PropTypes.arrayOf(NewsItemType).isRequired,
+  items: PropTypes.arrayOf(NewsItemType).isRequired,
 };

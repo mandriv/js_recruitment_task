@@ -33,7 +33,6 @@ export default function Main() {
       />
       <section className="container newsContainer">
         <div className="row">
-          <NewsList news={TEST_NEWS_DATA} />
           <div className="column column-55">
             <h2 className="newsColumnTitle">Read Later</h2>
             <ul className="readLaterList">
@@ -51,6 +50,7 @@ export default function Main() {
               </li>
             </ul>
           </div>
+          <NewsList items={TEST_NEWS_DATA} />
         </div>
       </section>
     </main>
