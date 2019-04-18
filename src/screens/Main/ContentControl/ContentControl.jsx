@@ -30,7 +30,7 @@ export default function ContentControl({ control, onUpdate }) {
             <option value="books">Books</option>
             <option value="business">Business</option>
             <option value="culture">Culture</option>
-            <option value="Sport">Sport</option>
+            <option value="sport">Sport</option>
           </select>
         </div>
       </div>
