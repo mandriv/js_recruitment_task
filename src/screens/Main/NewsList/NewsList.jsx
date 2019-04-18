@@ -3,18 +3,22 @@ import PropTypes from 'prop-types';
 
 import List from '/utils/List';
 import NewsItemType from '/types/NewsItemType';
+import Spinner from '/shared/Spinner';
 
 import NewsItem from './NewsItem';
 
-export default function NewsList({ items }) {
+export default function NewsList({ items, loading }) {
   return (
     <div className="column column-65">
       <h2 className="newsColumnTitle">News List</h2>
       <ul className="newsList">
-        <List
-          data={items}
-          renderItem={item => <NewsItem item={item} key={item.id} />}
-        />
+        { loading ? <Spinner /> : (
+          <List
+            data={items}
+            renderItem={item => <NewsItem item={item} key={item.id} />}
+            renderEmpty={() => <p>There are no news to display</p>}
+          />
+        )}
       </ul>
     </div>
   );
@@ -22,4 +26,5 @@ export default function NewsList({ items }) {
 
 NewsList.propTypes = {
   items: PropTypes.arrayOf(NewsItemType).isRequired,
+  loading: PropTypes.bool.isRequired,
 };

@@ -25,7 +25,9 @@ const TEST_NEWS_DATA = [
 ];
 
 export default function Main() {
-  const { control, handleControlUpdate, news } = useNews();
+  const {
+    loading, control, handleControlUpdate, news,
+  } = useNews();
 
   return (
     <main className="wrapper">
@@ -36,7 +38,7 @@ export default function Main() {
       />
       <section className="container newsContainer">
         <div className="row">
-          <NewsList items={news} />
+          <NewsList items={news} loading={loading} />
           <ReadLaterList items={TEST_NEWS_DATA} />
         </div>
       </section>

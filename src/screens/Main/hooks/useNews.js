@@ -14,7 +14,7 @@ export default function useAdmins() {
   const [control, setControl] = useState(INITITAL_CONTROL);
   const [news, setNews] = useState([]);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let timeout = null;
 
