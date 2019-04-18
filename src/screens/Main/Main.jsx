@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AppHeader from '/shared/AppHeader';
+import ErrorBanner from '/shared/ErrorBanner';
 
 import useNews from './hooks/useNews';
 import useReadLater from './hooks/useReadLater';
@@ -10,7 +11,7 @@ import ReadLaterList from './ReadLaterList';
 
 export default function Main() {
   const {
-    loading, control, handleControlUpdate, news,
+    loading, error, control, handleControlUpdate, news,
   } = useNews();
 
   const { items, add, remove } = useReadLater();
@@ -18,6 +19,7 @@ export default function Main() {
   return (
     <main className="wrapper">
       <AppHeader title="Recruitment task" />
+      <ErrorBanner message={error} />
       <ContentControl
         control={control}
         onUpdate={handleControlUpdate}

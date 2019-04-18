@@ -58,7 +58,7 @@ export default function useAdmins() {
           return;
         }
         console.warn(err); // eslint-disable-line
-        setError('Oops! Something went wrong.');
+        setError(`Oops! Something went wrong: ${err.message}`);
       } finally {
         setLoading(false);
       }

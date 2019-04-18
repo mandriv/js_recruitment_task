@@ -1,0 +1,13 @@
+.error-banner {
+  padding-top: 20px;
+}
+
+.error-banner.hidden {
+  display: none;
+}
+
+.error-banner > p {
+  color: #e74c3c;
+  font-weight: bold;
+  margin: 0;
+}
