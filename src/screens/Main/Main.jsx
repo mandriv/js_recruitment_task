@@ -2,6 +2,7 @@ import React from 'react';
 
 import AppHeader from '/shared/AppHeader';
 
+import useNews from './hooks/useNews';
 import ContentControl from './ContentControl';
 import NewsList from './NewsList';
 import ReadLaterList from './ReadLaterList';
@@ -24,17 +25,19 @@ const TEST_NEWS_DATA = [
 ];
 
 export default function Main() {
+  const { control, news } = useNews();
+
   return (
     <main className="wrapper">
       <AppHeader title="Recruitment task" />
       <ContentControl
-        searchQuery="Test"
-        activeSection="books"
-        activePage={2}
+        searchQuery={control.searchQuery}
+        activeSection={control.activeSection}
+        activePage={control.activePage}
       />
       <section className="container newsContainer">
         <div className="row">
-          <NewsList items={TEST_NEWS_DATA} />
+          <NewsList items={news} />
           <ReadLaterList items={TEST_NEWS_DATA} />
         </div>
       </section>
